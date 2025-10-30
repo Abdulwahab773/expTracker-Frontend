@@ -9,7 +9,7 @@ export default function PrivateRoute() {
 
   useEffect(() => {
 
-    let local = localStorage.getItem("Token");
+    let local = localStorage.getItem("token");
     setUser(local);
     setLoading(false);
 

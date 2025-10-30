@@ -3,17 +3,19 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
+  
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
   let [token, setToken] = useState("");
+  let navigate = useNavigate();
 
 
+  
   useEffect(() => {
     let jwtToken = localStorage.getItem("token")
     setToken(jwtToken); 
   }, [])
 
-  let navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -28,15 +30,25 @@ const Login = () => {
       let response = await axios.post(url, obj);
 
       console.log(response.data);
-      localStorage.setItem("Token" , response.data.token)
-
-      token ? navigate("/dashboard") : console.log("error");
+      
+      if (response.data.status) {
+        localStorage.setItem("token" , response.data.token)
+        localStorage.setItem("userId" , response.data.userId)
+        
+        navigate("/dashboard");
+      } else {
+        console.log(response.data.message);
+      }
       
 
     } catch (error) {
       console.log("error", error.message);
     }
   };
+  
+  
+
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-200 p-4">

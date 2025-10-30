@@ -24,10 +24,11 @@ const Signup = () => {
     try {
 
       let url = "http://localhost:5000/signup"
-      let response = await axios.post(url, obj)
-      navigate("/")
-
-  
+      let response = await axios.post(url, obj);
+      console.log(response.data);
+      
+      response.data.status ? navigate("/") : console.log("Something Went Wrong");
+      
 
 
 

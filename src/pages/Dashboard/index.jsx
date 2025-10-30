@@ -1,11 +1,26 @@
-import React from 'react'
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import { FinanceContext } from "../../context/FinanceContext";
 
 const Dashboard = () => {
-  return (
-    <div>
-      this is Dashboard
-    </div>
-  )
-}
 
-export default Dashboard
+  const { income, expense } = useContext(FinanceContext);
+
+  return (
+      <div>
+        Dashboard Page:
+        <br />
+        <br />
+        <Link className="hover:underline" to={"/dashboard/expense"}>
+          Expense : {expense} 
+        </Link>
+        <br />
+        <br />
+        <Link className="hover:underline" to={"/dashboard/income"}>
+          Income : {income}
+        </Link>
+      </div>
+  );
+};
+
+export default Dashboard;
