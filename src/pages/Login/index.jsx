@@ -3,19 +3,15 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
-  
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
   let [token, setToken] = useState("");
   let navigate = useNavigate();
 
-
-  
   useEffect(() => {
-    let jwtToken = localStorage.getItem("token")
-    setToken(jwtToken); 
-  }, [])
-
+    let jwtToken = localStorage.getItem("token");
+    setToken(jwtToken);
+  }, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -30,25 +26,20 @@ const Login = () => {
       let response = await axios.post(url, obj);
 
       console.log(response.data);
-      
+
       if (response.data.status) {
-        localStorage.setItem("token" , response.data.token)
-        localStorage.setItem("userId" , response.data.userId)
-        
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("userId", response.data.userId);
+        localStorage.setItem("userName", response.data.userName);
+
         navigate("/dashboard");
       } else {
         console.log(response.data.message);
       }
-      
-
     } catch (error) {
       console.log("error", error.message);
     }
   };
-  
-  
-
-
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-200 p-4">
@@ -69,6 +60,7 @@ const Login = () => {
               type="email"
               placeholder="Enter your email"
               onChange={(e) => setEmail(e.target.value)}
+              required
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-200"
             />
           </div>
@@ -81,6 +73,7 @@ const Login = () => {
               type="password"
               placeholder="Enter your password"
               onChange={(e) => setPassword(e.target.value)}
+              required
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-200"
             />
           </div>
@@ -93,14 +86,15 @@ const Login = () => {
           </button>
         </form>
 
-        <div className="flex justify-between items-center mt-6 text-sm">
+        <p className="text-center text-gray-600 text-sm mt-6">
+          Don't have an account?{" "}
           <Link
             to="/signup"
-            className="text-gray-600 hover:underline font-medium"
+            className="text-indigo-600 hover:underline font-medium"
           >
-            Create Account
+            Sign Up
           </Link>
-        </div>
+        </p>
       </div>
     </div>
   );

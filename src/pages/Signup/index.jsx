@@ -63,6 +63,7 @@ const Signup = () => {
               type="text"
               placeholder="Enter your name"
               onChange={(e) => setFullName(e.target.value)}
+              required
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-200"
             />
           </div>
@@ -75,6 +76,7 @@ const Signup = () => {
               type="email"
               placeholder="Enter your email"
               onChange={(e) => setEmail(e.target.value)}
+              required
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-200"
             />
           </div>
@@ -87,6 +89,7 @@ const Signup = () => {
               type="number"
               placeholder="Enter your age"
               onChange={(e) => setAge(e.target.value)}
+              required
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-200"
             />
           </div>
@@ -99,6 +102,7 @@ const Signup = () => {
               type="password"
               placeholder="Enter your password"
               onChange={(e) => setPassword(e.target.value)}
+              required
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-200"
             />
           </div>
